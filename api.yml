@@ -1,0 +1,292 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Login Microservice for Picaditos
+  description: Ruby + MySQL
+  license:
+    name: Software Architecture 2018-II
+host: 192.168.99.101:3340
+basePath: /login_ms
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /auth:
+    post:
+      summary: Create user
+      operationId: createUser
+      parameters:
+        - name: User
+          in: body
+          required: true
+          description: User object
+          schema:
+            $ref: '#/definitions/UserInput'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /auth/sign_in:
+    post:
+      summary: Verify User
+      operationId: verifyUser
+      parameters:
+        - name: UserSignIn
+          in: body
+          required: true
+          description: UserSignIn object
+          schema:
+            $ref: '#/definitions/UserSignIn'
+      responses:
+        '200':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /auth/sign_out:
+    delete:
+      summary: End a sesion
+      operationId: userSignOut
+      parameters:
+        - name: UserSesion
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /auth/validate_token:
+    get:
+      summary: Validate token user
+      operationId: validateToken
+      parameters:
+        - name: UserSesion
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/UserSesion'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /auth/allUsers:
+    get:
+      summary: Returns all users in db
+      operationId: returnAllUser
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/UserList'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /auth/userById/:
+    get:
+      summary: Returns user information with id
+      operationId: returnUserById
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/User'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+definitions:
+  # User
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      uid:
+        type: string
+      allow_password_change:
+        type: boolean
+      nombres:
+        type: string
+      apellidos:
+        type: string
+      username:
+        type: string
+      picture:
+        type: string
+      telefono:
+        type: string
+      email:
+        type: string
+      tokens:
+        type: string
+      created_at:
+        type: string
+      updated_at:
+        type: string
+
+  UserInput:
+    type: object
+    properties:
+      id:
+        type: integer
+      provider:
+        type: string
+      uid:
+        type: string
+      allow_password_change:
+        type: boolean
+      nombres:
+        type: string
+      apellidos:
+        type: string
+      email:
+        type: string
+      picture:
+        type: string
+      telefono:
+        type: string
+      username:
+        type: string
+      created_at:
+        type: string
+      updated_at:
+        type: string
+
+  UserList:
+    type: object
+    required:
+      - list
+    properties:
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+
+  UserSignIn:
+    type: object
+    required:
+      - email
+      - passwword
+    properties:
+      id:
+        type: integer
+      provider:
+        type: string
+      uid:
+        type: string
+      allow_password_change:
+        type: boolean
+      nombres:
+        type: string
+      apellidos:
+        type: string
+      email:
+        type: string
+      picture:
+        type: string
+      telefono:
+        type: string
+      username:
+        type: string
+
+  UserSesion:
+    type: object
+    required:
+      - acccess-tokens
+      - client
+      - uid
+    properties:
+      id:
+        type: integer
+      provider:
+        type: string
+      uid:
+        type: string
+      allow_password_change:
+        type: string
+      nombres:
+        type: string
+      apellidos:
+        type: string
+      email:
+        type: string
+      picture:
+        type: string
+      telefono:
+        type: string
+      username:
+        type: string
+
+# Errors
+  ErrorModel:
+    type: object
+    required:
+      - message
+      - code
+    properties:
+      message:
+        type: string
+      code:
+        type: number
+      description:
+        type: object

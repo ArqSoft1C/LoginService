@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "f0a77ada-ea11-4289-9252-86b986811e0a",
+		"name": "docker login",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "192.168.99.101:3340/auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "nombres",
+						"value": "andres"
+					},
+					{
+						"key": "apellidos",
+						"value": "garcia"
+					},
+					{
+						"key": "email",
+						"value": "asd2@unal.edu.co"
+					},
+					{
+						"key": "picture",
+						"value": "asd2.jpg"
+					},
+					{
+						"key": "telefono",
+						"value": "123"
+					},
+					{
+						"key": "username",
+						"value": "andres"
+					},
+					{
+						"key": "password",
+						"value": "12345678"
+					},
+					{
+						"key": "password_confirmation",
+						"value": "12345678"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "192.168.99.101:3340/auth",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"port": "3340",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "192.168.99.101:3340/auth/sign_in",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "nombres",
+						"value": "santy",
+						"disabled": true
+					},
+					{
+						"key": "apellidos",
+						"value": "marquez",
+						"disabled": true
+					},
+					{
+						"key": "email",
+						"value": "asd@unal.edu.co"
+					},
+					{
+						"key": "picture",
+						"value": "asd.jpg",
+						"disabled": true
+					},
+					{
+						"key": "telefono",
+						"value": "123",
+						"disabled": true
+					},
+					{
+						"key": "username",
+						"value": "raziel",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "12345678"
+					},
+					{
+						"key": "password_confirmation",
+						"value": "12345678",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "192.168.99.101:3340/auth/sign_in",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"port": "3340",
+					"path": [
+						"auth",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "192.168.99.101:3340/auth/sign_out",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "I3xB8aJhtsugN1h9UdcHGA"
+					},
+					{
+						"key": "client",
+						"value": "ZElwUgliR-y6jeFTGxR5OQ"
+					},
+					{
+						"key": "uid",
+						"value": "asd@unal.edu.co"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "192.168.99.101:3340/auth/sign_out",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"port": "3340",
+					"path": [
+						"auth",
+						"sign_out"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "192.168.99.101:3340/auth/validate_token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "I3xB8aJhtsugN1h9UdcHGA"
+					},
+					{
+						"key": "client",
+						"value": "ZElwUgliR-y6jeFTGxR5OQ"
+					},
+					{
+						"key": "uid",
+						"value": "asd@unal.edu.co"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "192.168.99.101:3340/auth/validate_token",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"port": "3340",
+					"path": [
+						"auth",
+						"validate_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "192.168.99.101:3340/auth/allUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "192.168.99.101:3340/auth/allUsers",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"port": "3340",
+					"path": [
+						"auth",
+						"allUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "192.168.99.101:3340/auth/userById/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "192.168.99.101:3340/auth/userById/2",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"101"
+					],
+					"port": "3340",
+					"path": [
+						"auth",
+						"userById",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
