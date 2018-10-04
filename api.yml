@@ -7,7 +7,7 @@ info:
   description: Ruby + MySQL
   license:
     name: Software Architecture 2018-II
-host: 192.168.99.101:3340
+host: 192.168.99.101:4001
 basePath: /login_ms
 schemes:
   - http
@@ -93,7 +93,6 @@ paths:
       operationId: validateToken
       parameters:
         - name: UserSesion
-          in: path
           required: true
           type: string
       responses:
@@ -183,18 +182,12 @@ definitions:
         type: string
       updated_at:
         type: string
+      password:
+        type: string
 
   UserInput:
     type: object
     properties:
-      id:
-        type: integer
-      provider:
-        type: string
-      uid:
-        type: string
-      allow_password_change:
-        type: boolean
       nombres:
         type: string
       apellidos:
@@ -207,9 +200,9 @@ definitions:
         type: string
       username:
         type: string
-      created_at:
+      password:
         type: string
-      updated_at:
+      password_confirmation:
         type: string
 
   UserList:
@@ -224,29 +217,10 @@ definitions:
 
   UserSignIn:
     type: object
-    required:
-      - email
-      - passwword
     properties:
-      id:
-        type: integer
-      provider:
-        type: string
-      uid:
-        type: string
-      allow_password_change:
-        type: boolean
-      nombres:
-        type: string
-      apellidos:
-        type: string
       email:
         type: string
-      picture:
-        type: string
-      telefono:
-        type: string
-      username:
+      password:
         type: string
 
   UserSesion:
