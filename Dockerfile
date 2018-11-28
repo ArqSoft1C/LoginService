@@ -8,3 +8,5 @@ ADD Gemfile.lock /login_ms/Gemfile.lock
 
 RUN bundle install
 ADD . /login_ms
+
+EXPOSE 4001
