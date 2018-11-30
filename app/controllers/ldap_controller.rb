@@ -29,7 +29,7 @@ class LdapController < ApplicationController
                 }
             )
             if ldap.bind
-                query = "select * from users where email LIKE '" + email + "'"
+                query = "select * from users where email LIKE 'email'"
                 results = ActiveRecord::Base.connection.exec_query(query)
                 if results.present?
                     @newAuth = ObjAuth.new(email, password, "true")
