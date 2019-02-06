@@ -1,6 +1,6 @@
 version: '2'
 services:
-  login_db:
+  login-db:
     image: mysql:5.7.22
     ports:
       - "3307:3307"
@@ -9,13 +9,13 @@ services:
       MYSQL_USER: picaditos
       MYSQL_PASSWORD: 123
       MYSQL_DATABASE: login
-      MYSQL_HOST: login_db
+      MYSQL_HOST: login-db
   login_ms:
     build: .
     command: bash -c "sleep 40 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 4001 -b '0.0.0.0'"
     ports:
       - "4001:4001"
     depends_on:
-      - login_db
+      - login-db
     links:
-      - login_db
+      - login-db
